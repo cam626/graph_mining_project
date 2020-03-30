@@ -1,9 +1,49 @@
 import argparse
 import json
+import networkx as nx
+import random
 
 
 class GraphManager():
-    def __init__(self):
+    def __init__(self, parameters):
+        self.parameters = parameters
+
+        self.graph = nx.read_edgelist(parameters["graph_filepath"])
+        self.initializeData()
+
+  
+    def initializeData(self):
+        self.beliefs = {}
+        self.perceived = {}
+        self.reliabilities = {}
+
+
+    def event(self):
+        edge = random.choice(list(self.graph.edges))
+        
+        return (edge[0], edge[1], self.beliefs[edge[0]])
+
+
+    def eventGenerator(self):
+        for _ in range(self.parameters["num_events"]):
+            yield self.event()
+
+
+    def error(self):
+        # SSE
+        pass
+
+
+    def processEvent(self, event):
+        pass
+
+
+    def train(self, event):
+        pass
+
+
+    def accuracy(self):
+        # percentage true
         pass
 
 
@@ -11,10 +51,26 @@ class Simulator():
     def __init__(self, config_filename):
         self.parseConfig(config_filename)
 
+        self.graph = GraphManager(self.parameters)
+
 
     def parseConfig(self, config_filename):
-        with open(config_filename) as f:
+        with open(config_filename, "r") as f:
             self.parameters = json.load(f)
+
+
+    def train(self):
+        while self.graph.error() > self.parameters["epsilon"]:
+            event = self.graph.event()
+            self.graph.processEvent(event)
+            self.graph.train(event)
+
+
+    def run(self):
+        events = self.graph.eventGenerator()
+        for event in events:
+            self.graph.processEvent(event)
+        return self.graph.accuracy()
 
 
 if __name__ == "__main__":
@@ -27,3 +83,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     sim = Simulator(args.config)
+    sim.run()
