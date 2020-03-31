@@ -80,6 +80,23 @@ class Simulator():
         return self.graph.accuracy()
 
 
+class HyperSimulator():
+    def __init__(self, config_filename):
+        self.n = 100
+        self.simulators = []
+        for _ in range(self.n):
+            self.simulators.append(Simulator(config_filename))
+
+
+    def run(self):
+        sum = 0
+        for sim in self.simulators:
+            if (sim.parameters.edge_reliability_method == 'sgd'):
+                sim.train()
+            sum += sim.run()
+        print(sum / self.n)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
