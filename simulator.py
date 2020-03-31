@@ -30,9 +30,11 @@ class GraphManager():
 
 
     def error(self):
-        # SSE
-        pass
-
+        """returns the Sum of Squared Errors"""
+        SSE = 0
+        for i in self.beliefs:
+            SSE += (1 - self.beliefs[i]) ** 2
+        return SSE
 
     def processEvent(self, event):
         pass
@@ -43,8 +45,13 @@ class GraphManager():
 
 
     def accuracy(self):
-        # percentage true
-        pass
+        """returns the percentage of vertices
+           with the correct value"""
+        sum = 0
+        for i in self.beliefs:
+            if (self.beliefs[i] >= 0.5):
+                sum += 1
+        return sum / len(self.beliefs)
 
 
 class Simulator():
