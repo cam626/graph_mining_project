@@ -47,11 +47,11 @@ class GraphManager():
     def accuracy(self):
         """returns the percentage of vertices
            with the correct value"""
-        sum = 0
+        count = 0
         for i in self.beliefs:
             if (self.beliefs[i] >= 0.5):
-                sum += 1
-        return sum / len(self.beliefs)
+                count += 1
+        return count / len(self.beliefs)
 
 
 class Simulator():
