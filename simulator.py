@@ -19,25 +19,53 @@ class GraphManager():
 
 
     def event(self):
+        """Create a single event randomly that send the belief of the sender
+        to the receiver based on the senders reliability."""
         edge = random.choice(list(self.graph.edges))
         
-        return (edge[0], edge[1], self.beliefs[edge[0]])
+        data = self.beliefs[edge[0]]
+
+        # The data that the sender believes may or may not be sent depending
+        # on reliability
+        data = (data if random.random() < self.reliabilities[edge[0]] else 1 - data)
+
+        return (edge[0], edge[1], data)
 
 
     def eventGenerator(self):
+        """A generator that yields events until the number of events generated
+        is equal to the number requested in the parameters."""
         for _ in range(self.parameters["num_events"]):
             yield self.event()
 
 
     def error(self):
-        """returns the Sum of Squared Errors"""
+        """Returns the Sum of Squared Errors of the current node beliefs."""
         SSE = 0
         for i in self.beliefs:
             SSE += (1 - self.beliefs[i]) ** 2
         return SSE
 
+
     def processEvent(self, event):
-        pass
+        """Update the belief of a receiving node based on the data received
+        from the sender and the perceived reliability of the sender from
+        the receivers perspective.
+        """
+        sender = event[0]
+        receiver = event[1]
+        data = event[2]
+
+        # How the receiver perceives the senders trustworthiness
+        perceived_reliability = self.perceived[receiver][sender]
+        
+        # Flip the data if the receiver chooses not to believe the sender
+        data = (data if random.random() < perceived_reliability else 1 - data)
+
+        # Update the receiver's belief as a weighted average of their current
+        # belief and the received data
+        vertex_stubbornness = self.parameters["vertex_stubbornness"]
+        self.beliefs[receiver] = self.beliefs[receiver] * vertex_stubbornness + data * (1 - vertex_stubbornness)
 
 
     def train(self, event):
@@ -45,8 +73,7 @@ class GraphManager():
 
 
     def accuracy(self):
-        """returns the percentage of vertices
-           with the correct value"""
+        """Returns the percentage of vertices with the correct value."""
         count = 0
         for i in self.beliefs:
             if (self.beliefs[i] >= 0.5):
