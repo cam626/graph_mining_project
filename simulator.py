@@ -12,29 +12,27 @@ class GraphManager():
         self.initializeData()
 
   
-def initializeData(self):
+    def initializeData(self):
+        methods = {
+            'degree': nx.degree_centrality,
+            'closeness': nx.closeness_centrality,
+            'betweenness': nx.betweenness_centrality,
+            'eigenvector': nx.eigenvector_centrality
+        }
+        centrality = {}
+
         self.beliefs = {}
         self.reliabilities = {}
         self.perceived = {}
 
-        random.seed()
-
         #initialize beliefs
-        for n in self.graph.nodes():
+        for n in self.graph:
             self.beliefs[n] = random.uniform(0.25,1)
 
         #initialize vertex reliability
-        centrality = {}
-        if (self.parameters.vertex_reliability_method == 'degree'):
-            centrality = nx.degree_centrality(self.graph)
-        elif (self.parameters.vertex_reliability_method == 'closeness'):
-            centrality = nx.degree_centrality(self.graph)
-        elif (self.parameters.vertex_reliability_method == 'betweenness'):
-            centrality = nx.betweenness_centrality(self.graph)
-        elif (self.parameters.vertex_reliability_method == 'eigenvector'):
-            centrality = nx.eigenvector_centrality(self.graph)
-        norm = 0
-        norm = max(centrality.values())
+        if (self.parameters.vertex_reliability_method != 'random'):
+            centrality = methods[self.parameters.vertex_reliability_method](self.graph)
+        norm = max(centrality.values()) if len(centrality > 0) else 0
         for n in self.beliefs:
             if (self.parameters.vertex_reliability_method == 'random'):
                 self.reliabilities[n] = random.uniform(0,1)
@@ -42,16 +40,10 @@ def initializeData(self):
                 self.reliabilities[n] = centrality[n] / norm
 
         #initialize edge reliability
-        if (self.parameters.edge_reliability_method == 'degree'):
-            centrality = nx.degree_centrality(self.graph)
-        elif (self.parameters.edge_reliability_method == 'closeness'):
-            centrality = nx.degree_centrality(self.graph)
-        elif (self.parameters.edge_reliability_method == 'betweenness'):
-            centrality = nx.betweenness_centrality(self.graph)
-        elif (self.parameters.edge_reliability_method == 'eigenvector'):
-            centrality = nx.eigenvector_centrality(self.graph)
-        norm = max(centrality.values())
-        for e in self.graph.edges():
+        if (self.parameters.edge_reliability_method != 'sgd'):
+            centrality = methods[self.parameters.edge_reliability_method](self.graph)
+        norm = max(centrality.values()) if len(centrality > 0) else 0
+        for e in self.graph.edges:
             if (e[0] not in self.perceived):
                 self.perceived[e[0]] = {}
             if (e[1] not in self.perceived):
@@ -60,8 +52,8 @@ def initializeData(self):
                 self.perceived[e[0]][e[1]] = 0.5
                 self.perceived[e[1]][e[0]] = 0.5
             else:
-                self.perceived[e[0]][e[1]] = centrality[e[0]] / norm
-                self.perceived[e[1]][e[0]] = centrality[e[1]] / norm   
+                self.perceived[e[0]][e[1]] = centrality[e[1]] / norm
+                self.perceived[e[1]][e[0]] = centrality[e[0]] / norm   
 
 
     def event(self):
