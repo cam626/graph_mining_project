@@ -1,72 +1,76 @@
 import argparse
 import json
-import networkx as nx
 import random
 
-def normalized(func):
-    def f(graph):
-        centrality = func(graph)
-        norm = max(centrality.values())
-        for i in centrality:
-            centrality[i] /= norm
-        return centrality
-    return f
+import networkx as nx
+
 
 class GraphManager():
-    methods = {
-        'degree': normalized(nx.degree_centrality),
-        'closeness': normalized(nx.closeness_centrality),
-        'betweenness': normalized(nx.betweenness_centrality),
-        'eigenvector': normalized(nx.eigenvector_centrality)
-        'random': specialCentrality(True)
-        'sgd': specialCentrality(False)
-    }
-
-
     def __init__(self, parameters):
         self.parameters = parameters
+
+        self.centrality_methods = {
+            'degree': self.normalized(nx.degree_centrality),
+            'closeness': self.normalized(nx.closeness_centrality),
+            'betweenness': self.normalized(nx.betweenness_centrality),
+            'eigenvector': self.normalized(nx.eigenvector_centrality),
+            'random': self.specialCentrality(method="random"),
+            'sgd': self.specialCentrality()
+        }
 
         self.graph = nx.read_edgelist(parameters["graph_filepath"])
         self.initializeData()
 
+
+    def normalized(self, func):
+        def f(graph):
+            centrality = func(graph)
+            norm = max(centrality.values())
+            for i in centrality:
+                centrality[i] /= norm
+            return centrality
+        return f
+
   
-    def specialCentrality(self, rand):
+    def specialCentrality(self, method="sgd"):
         def f(graph):
             centrality = {}
             for n in graph:
-                centrality[n] = random.uniform(0,1) if rand else 0.5
+                centrality[n] = random.uniform(0,1) if method == "random" else 0.5
             return centrality
         return f
 
 
-    def initializeData(self, post_train = False):
+    def initializeBeliefs(self):
         self.beliefs = {}
-        self.reliabilities = {}
-        self.perceived = {}
 
-        centrality = {}
-
-        #initialize beliefs
         for n in self.graph:
             self.beliefs[n] = random.uniform(0.25,1)
 
-        if (post_train):
-            return
 
-        #initialize vertex reliability
-        centrality = methods[self.parameters.vertex_reliability_method](self.graph)
-        for n in self.beliefs:
+    def initializeData(self):
+        self.reliabilities = {}
+        self.perceived = {}
+
+        # Each vertex needs to start with a belief of what is true
+        self.initializeBeliefs()
+
+        # Initialize vertex reliability based on the method given
+        centrality = self.centrality_methods[self.parameters["vertex_reliability_method"]](self.graph)
+        for n in self.graph:
             self.reliabilities[n] = centrality[n]
 
-        #initialize edge reliability
-        if (self.parameters.vertex_reliability_method
-            != self.parameters.edge_reliability_method):
-            centrality = methods[self.parameters.edge_reliability_method](self.graph)
+        # Initialize edge reliability based on the method given
+        # Only recalculate centrality if the method is different than that of vertex reliability
+        if (self.parameters["vertex_reliability_method"] != self.parameters["edge_reliability_method"]):
+            centrality = self.centrality_methods[self.parameters["edge_reliability_method"]](self.graph)
+
         for e in self.graph.edges:
             if (e[0] not in self.perceived):
                 self.perceived[e[0]] = {}
             if (e[1] not in self.perceived):
                 self.perceived[e[1]] = {}
+
             self.perceived[e[0]][e[1]] = centrality[e[1]]
             self.perceived[e[1]][e[0]] = centrality[e[0]]
 
@@ -128,12 +132,13 @@ class Simulator():
 
 
     def run(self):
-        if (self.parameters.edge_reliability_method == 'sgd'):
-            self.graph.initializeData(True)
+        if (self.parameters["edge_reliability_method"] == 'sgd'):
+            self.train()
+            self.graph.initializeBeliefs()
+
         events = self.graph.eventGenerator()
         for event in events:
             self.graph.processEvent(event)
-        return self.graph.accuracy()
 
 
 if __name__ == "__main__":
@@ -147,3 +152,5 @@ if __name__ == "__main__":
 
     sim = Simulator(args.config)
     sim.run()
+
+    print("Simulation ended with an accuracy of {}.".format(sim.graph.accuracy()))
