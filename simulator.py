@@ -69,7 +69,19 @@ class GraphManager():
 
 
     def train(self, event):
-        pass
+        """Update the perceived reliability of the sender from the receiver's
+        perspective based on SGD where the objective function is the squared
+        error of the data received.
+
+        w = w - eta * (-2 * (1 - wx) * x)
+        """
+        sender = event[0]
+        receiver = event[1]
+        data = event[2]
+
+        eta = self.parameters["learning_rate"]
+        self.perceived[receiver][sender] = self.perceived[receiver][sender] - eta * \
+            (-2 * (1 - self.perceived[receiver][sender] * data) * data)
 
 
     def accuracy(self):
