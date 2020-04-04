@@ -5,6 +5,13 @@ import random
 
 
 class GraphManager():
+    methods = {
+        'degree': nx.degree_centrality,
+        'closeness': nx.closeness_centrality,
+        'betweenness': nx.betweenness_centrality,
+        'eigenvector': nx.eigenvector_centrality
+    }
+
     def __init__(self, parameters):
         self.parameters = parameters
 
@@ -13,17 +20,11 @@ class GraphManager():
 
   
     def initializeData(self):
-        methods = {
-            'degree': nx.degree_centrality,
-            'closeness': nx.closeness_centrality,
-            'betweenness': nx.betweenness_centrality,
-            'eigenvector': nx.eigenvector_centrality
-        }
-        centrality = {}
-
         self.beliefs = {}
         self.reliabilities = {}
         self.perceived = {}
+
+        centrality = {}
 
         #initialize beliefs
         for n in self.graph:
