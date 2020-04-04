@@ -3,14 +3,25 @@ import json
 import networkx as nx
 import random
 
+def normalized(func):
+    def f(graph):
+        centrality = func(graph)
+        norm = max(centrality.values())
+        for i in centrality:
+            centrality[i] /= norm
+        return centrality
+    return f
 
 class GraphManager():
     methods = {
-        'degree': nx.degree_centrality,
-        'closeness': nx.closeness_centrality,
-        'betweenness': nx.betweenness_centrality,
-        'eigenvector': nx.eigenvector_centrality
+        'degree': normalized(nx.degree_centrality),
+        'closeness': normalized(nx.closeness_centrality),
+        'betweenness': normalized(nx.betweenness_centrality),
+        'eigenvector': normalized(nx.eigenvector_centrality)
+        'random': specialCentrality(True)
+        'sgd': specialCentrality(False)
     }
+
 
     def __init__(self, parameters):
         self.parameters = parameters
@@ -19,7 +30,16 @@ class GraphManager():
         self.initializeData()
 
   
-    def initializeData(self):
+    def specialCentrality(self, rand):
+        def f(graph):
+            centrality = {}
+            for n in graph:
+                centrality[n] = random.uniform(0,1) if rand else 0.5
+            return centrality
+        return f
+
+
+    def initializeData(self, post_train = False):
         self.beliefs = {}
         self.reliabilities = {}
         self.perceived = {}
@@ -30,31 +50,25 @@ class GraphManager():
         for n in self.graph:
             self.beliefs[n] = random.uniform(0.25,1)
 
+        if (post_train):
+            return
+
         #initialize vertex reliability
-        if (self.parameters.vertex_reliability_method != 'random'):
-            centrality = methods[self.parameters.vertex_reliability_method](self.graph)
-        norm = max(centrality.values()) if len(centrality > 0) else 0
+        centrality = methods[self.parameters.vertex_reliability_method](self.graph)
         for n in self.beliefs:
-            if (self.parameters.vertex_reliability_method == 'random'):
-                self.reliabilities[n] = random.uniform(0,1)
-            else:
-                self.reliabilities[n] = centrality[n] / norm
+            self.reliabilities[n] = centrality[n]
 
         #initialize edge reliability
-        if (self.parameters.edge_reliability_method != 'sgd'):
+        if (self.parameters.vertex_reliability_method
+            != self.parameters.edge_reliability_method):
             centrality = methods[self.parameters.edge_reliability_method](self.graph)
-        norm = max(centrality.values()) if len(centrality > 0) else 0
         for e in self.graph.edges:
             if (e[0] not in self.perceived):
                 self.perceived[e[0]] = {}
             if (e[1] not in self.perceived):
                 self.perceived[e[1]] = {}
-            if (self.parameters.edge_reliability_method == 'sgd'):
-                self.perceived[e[0]][e[1]] = 0.5
-                self.perceived[e[1]][e[0]] = 0.5
-            else:
-                self.perceived[e[0]][e[1]] = centrality[e[1]] / norm
-                self.perceived[e[1]][e[0]] = centrality[e[0]] / norm   
+            self.perceived[e[0]][e[1]] = centrality[e[1]]
+            self.perceived[e[1]][e[0]] = centrality[e[0]]
 
 
     def event(self):
@@ -114,6 +128,8 @@ class Simulator():
 
 
     def run(self):
+        if (self.parameters.edge_reliability_method == 'sgd'):
+            self.graph.initializeData(True)
         events = self.graph.eventGenerator()
         for event in events:
             self.graph.processEvent(event)
