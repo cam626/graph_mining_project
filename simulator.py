@@ -1,7 +1,10 @@
 import argparse
 import json
 import random
+
+import numpy as np
 import networkx as nx
+from tqdm import tqdm
 
 
 class GraphManager():
@@ -17,7 +20,7 @@ class GraphManager():
             'sgd': self.specialCentrality()
         }
 
-        self.graph = nx.read_edgelist(parameters["graph_filepath"])
+        self.graph = nx.read_edgelist(parameters["graph_filepath"], create_using=nx.OrderedGraph())
         self.initializeData()
 
 
@@ -88,11 +91,18 @@ class GraphManager():
         return (edge[0], edge[1], data)
 
 
-    def eventGenerator(self):
+    def eventGenerator(self, n):
         """A generator that yields events until the number of events generated
-        is equal to the number requested in the parameters."""
-        for _ in range(self.parameters["num_events"]):
+        is equal to the number requested in the argument."""
+        for _ in range(n):
             yield self.event()
+
+
+    def getPerceivedState(self):
+        state = np.array([])
+        for e in self.graph.edges:
+            state = np.concatenate((state, np.array([self.perceived[e[0]][e[1]], self.perceived[e[1]][e[0]]])), axis=0)
+        return state
 
 
     def error(self):
@@ -162,10 +172,16 @@ class Simulator():
 
 
     def train(self):
-        while self.graph.error() > self.parameters["epsilon"]:
-            event = self.graph.event()
-            self.graph.processEvent(event)
-            self.graph.train(event)
+        old_perceived_state = np.zeros(shape=(2*len(self.graph.graph.edges)))
+        new_perceived_state = self.graph.getPerceivedState()
+        while np.linalg.norm(old_perceived_state-new_perceived_state) > self.parameters["epsilon"]:
+            print(np.linalg.norm(old_perceived_state-new_perceived_state))
+            old_perceived_state = new_perceived_state
+            events = self.graph.eventGenerator(self.parameters["batch_size"])
+            for event in events:
+                self.graph.processEvent(event)
+                self.graph.train(event)
+            new_perceived_state = self.graph.getPerceivedState()
 
 
     def run(self):
@@ -173,8 +189,8 @@ class Simulator():
             self.train()
             self.graph.initializeBeliefs()
 
-        events = self.graph.eventGenerator()
-        for event in events:
+        events = self.graph.eventGenerator(self.parameters["num_events"])
+        for event in tqdm(events, total=self.parameters["num_events"]):
             self.graph.processEvent(event)
 
 
@@ -183,11 +199,13 @@ if __name__ == "__main__":
 
     parser.add_argument("-c", "--config", 
         help="The configuration file to use for the simulation.",
-        required=True)
+        default="configs/config_example.json")
 
     args = parser.parse_args()
 
     sim = Simulator(args.config)
+
+    print("Starting simulation.")
     sim.run()
 
     print("Simulation ended with an accuracy of {}.".format(sim.graph.accuracy()))
