@@ -1,3 +1,4 @@
+import multiprocessing as mp
 import argparse
 import json
 import random
@@ -5,6 +6,8 @@ import random
 import numpy as np
 import networkx as nx
 from tqdm import tqdm
+
+POOL_SIZE = 4
 
 
 class GraphManager():
@@ -195,34 +198,44 @@ class Simulator():
 
 
 class HyperSimulator():
-    def __init__(self, config_filename):
-        self.n = 100
-        self.simulators = []
-        for _ in range(self.n):
-            self.simulators.append(Simulator(config_filename))
+    def __init__(self, configurations, num_runs):
+        self.num_runs = num_runs
+        self.configurations = configurations
+
+
+    def runSimulation(self, simulator):
+        return simulator.run()
+
+
+    def nextSimulator(self):
+        for config in self.configurations:
+            for _ in range(self.num_runs):
+                yield Simulator(config)
 
 
     def run(self):
-        sum = 0
-        for sim in self.simulators:
-            if (sim.parameters.edge_reliability_method == 'sgd'):
-                sim.train()
-            sum += sim.run()
-        print(sum / self.n)
+        with mp.Pool(POOL_SIZE) as p:
+            results = p.map(self.runSimulation, self.nextSimulator())
 
+        print(results)
 
 if __name__ == "__main__":
+    mp.set_start_method("spawn")
+
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("-c", "--config", 
-        help="The configuration file to use for the simulation.",
-        default="configs/config_example.json")
+    parser.add_argument("-c", "--configs", 
+        help="A list of configuration files to run.",
+        required=True,
+        nargs="+")
+
+    parser.add_argument("-n", "--num_runs",
+        help="The number of times to run each given configuration.",
+        default=1)
 
     args = parser.parse_args()
 
-    sim = Simulator(args.config)
-
-    print("Starting simulation.")
+    sim = HyperSimulator(args.configs, args.num_runs)
     sim.run()
 
     print("Simulation ended with an accuracy of {}.".format(sim.graph.accuracy()))
