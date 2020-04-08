@@ -37,6 +37,8 @@ class GraphManager():
     def centrality(self, method):
         func = self.centrality_methods[method]
 
+        if method in ["sgd", "random"]:
+            return func(self.graph)
         return self.normalize(func(self.graph))
 
     
@@ -171,15 +173,10 @@ class GraphManager():
 
 
 class Simulator():
-    def __init__(self, config_filename):
-        self.parseConfig(config_filename)
+    def __init__(self, config):
+        self.parameters = config
 
         self.graph = GraphManager(self.parameters)
-
-
-    def parseConfig(self, config_filename):
-        with open(config_filename, "r") as f:
-            self.parameters = json.load(f)
 
 
     def train(self):
@@ -208,9 +205,11 @@ class Simulator():
 
 
 class HyperSimulator():
-    def __init__(self, configurations, num_runs):
+    def __init__(self, configs_filename, num_runs):
         self.num_runs = num_runs
-        self.configurations = configurations
+
+        with open(configs_filename, "r") as f:
+            self.configurations = json.load(f)["configurations"]
 
 
     def runSimulation(self, simulator):
@@ -218,9 +217,9 @@ class HyperSimulator():
 
 
     def nextSimulator(self):
-        for config in self.configurations:
+        for config_index, config in enumerate(self.configurations):
             for i in range(self.num_runs):
-                print("Run #{} of configuration {}".format(i, config))
+                print("Starting run #{} of configuration {}".format(i, config_index))
                 yield Simulator(config)
 
 
@@ -236,9 +235,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-c", "--configs", 
-        help="A list of configuration files to run.",
-        required=True,
-        nargs="+")
+        help="A file containing the configurations to use.",
+        required=True)
 
     parser.add_argument("-n", "--num_runs",
         help="The number of times to run each given configuration.",
