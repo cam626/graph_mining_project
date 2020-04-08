@@ -1,3 +1,4 @@
+import multiprocessing as mp
 import argparse
 import json
 import random
@@ -6,41 +7,53 @@ import numpy as np
 import networkx as nx
 from tqdm import tqdm
 
+POOL_SIZE = 4
+
 
 class GraphManager():
     def __init__(self, parameters):
         self.parameters = parameters
 
         self.centrality_methods = {
-            'degree': self.normalized(nx.degree_centrality),
-            'closeness': self.normalized(nx.closeness_centrality),
-            'betweenness': self.normalized(nx.betweenness_centrality),
-            'eigenvector': self.normalized(nx.eigenvector_centrality),
-            'random': self.specialCentrality(method="random"),
-            'sgd': self.specialCentrality()
+            'degree': nx.degree_centrality,
+            'closeness': nx.closeness_centrality,
+            'betweenness': nx.betweenness_centrality,
+            'eigenvector': nx.eigenvector_centrality,
+            'random': self.randomCentrality,
+            'sgd': self.sgdCentrality
         }
 
         self.graph = nx.read_edgelist(parameters["graph_filepath"], create_using=nx.OrderedGraph())
         self.initializeData()
 
 
-    def normalized(self, func):
-        def f(graph):
-            centrality = func(graph)
-            norm = max(centrality.values())
-            for i in centrality:
-                centrality[i] /= norm
-            return centrality
-        return f
+    def normalize(self, centrality):
+        norm = max(centrality.values())
+        for i in centrality:
+            centrality[i] /= norm
+        return centrality
 
-  
-    def specialCentrality(self, method="sgd"):
-        def f(graph):
-            centrality = {}
-            for n in graph:
-                centrality[n] = random.uniform(0,1) if method == "random" else 0.5
-            return centrality
-        return f
+
+    def centrality(self, method):
+        func = self.centrality_methods[method]
+
+        if method in ["sgd", "random"]:
+            return func(self.graph)
+        return self.normalize(func(self.graph))
+
+    
+    def randomCentrality(self, graph):
+        centrality = {}
+        for n in graph:
+            centrality[n] = random.uniform(0,1)
+        return centrality
+
+
+    def sgdCentrality(self, graph):
+        centrality = {}
+        for n in graph:
+            centrality[n] = 0.5
+        return centrality
 
 
     def initializeBeliefs(self):
@@ -58,14 +71,14 @@ class GraphManager():
         self.initializeBeliefs()
 
         # Initialize vertex reliability based on the method given
-        centrality = self.centrality_methods[self.parameters["vertex_reliability_method"]](self.graph)
+        centrality = self.centrality(self.parameters["vertex_reliability_method"])
         for n in self.graph:
             self.reliabilities[n] = centrality[n]
 
         # Initialize edge reliability based on the method given
         # Only recalculate centrality if the method is different than that of vertex reliability
         if (self.parameters["vertex_reliability_method"] != self.parameters["edge_reliability_method"]):
-            centrality = self.centrality_methods[self.parameters["edge_reliability_method"]](self.graph)
+            centrality = self.centrality(self.parameters["edge_reliability_method"])
 
         for e in self.graph.edges:
             if (e[0] not in self.perceived):
@@ -160,22 +173,17 @@ class GraphManager():
 
 
 class Simulator():
-    def __init__(self, config_filename):
-        self.parseConfig(config_filename)
+    def __init__(self, config):
+        self.parameters = config
 
         self.graph = GraphManager(self.parameters)
-
-
-    def parseConfig(self, config_filename):
-        with open(config_filename, "r") as f:
-            self.parameters = json.load(f)
 
 
     def train(self):
         old_perceived_state = np.zeros(shape=(2*len(self.graph.graph.edges)))
         new_perceived_state = self.graph.getPerceivedState()
         while np.linalg.norm(old_perceived_state-new_perceived_state) > self.parameters["epsilon"]:
-            print(np.linalg.norm(old_perceived_state-new_perceived_state))
+            # print(np.linalg.norm(old_perceived_state-new_perceived_state))
             old_perceived_state = new_perceived_state
             events = self.graph.eventGenerator(self.parameters["batch_size"])
             for event in events:
@@ -190,22 +198,54 @@ class Simulator():
             self.graph.initializeBeliefs()
 
         events = self.graph.eventGenerator(self.parameters["num_events"])
-        for event in tqdm(events, total=self.parameters["num_events"]):
+        for event in events:
             self.graph.processEvent(event)
 
+        return self.graph.accuracy()
+
+
+class HyperSimulator():
+    def __init__(self, configs_filename, num_runs):
+        self.num_runs = num_runs
+
+        with open(configs_filename, "r") as f:
+            self.configurations = json.load(f)["configurations"]
+
+
+    def runSimulation(self, simulator):
+        return simulator.run()
+
+
+    def nextSimulator(self):
+        for config_index, config in enumerate(self.configurations):
+            for i in range(self.num_runs):
+                print("Starting run #{} of configuration {}".format(i, config_index))
+                yield Simulator(config)
+
+
+    def run(self):
+        with mp.Pool(POOL_SIZE) as p:
+            results = p.map(self.runSimulation, self.nextSimulator())
+
+        return results
 
 if __name__ == "__main__":
+    mp.set_start_method("spawn")
+
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("-c", "--config", 
-        help="The configuration file to use for the simulation.",
-        default="configs/config_example.json")
+    parser.add_argument("-c", "--configs", 
+        help="A file containing the configurations to use.",
+        required=True)
+
+    parser.add_argument("-n", "--num_runs",
+        help="The number of times to run each given configuration.",
+        default=1,
+        type=int)
 
     args = parser.parse_args()
 
-    sim = Simulator(args.config)
+    sim = HyperSimulator(args.configs, args.num_runs)
+    results = sim.run()
 
-    print("Starting simulation.")
-    sim.run()
-
-    print("Simulation ended with an accuracy of {}.".format(sim.graph.accuracy()))
+    print("Simulations ended with the following accuracies: {}.".format(results))
