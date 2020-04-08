@@ -1,0 +1,290 @@
+{
+    "results": [
+        {
+            "config": {
+                "num_events": 100,
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "learning_rate": 0.001,
+                "epsilon": 0.0021,
+                "vertex_stubbornness": 0,
+                "batch_size": 100
+            },
+            "accuracies": [
+                0.52,
+                0.55,
+                0.48,
+                0.55,
+                0.54,
+                0.56,
+                0.64,
+                0.59,
+                0.67,
+                0.56
+            ],
+            "average": 0.5660000000000001,
+            "standard_deviation": 0.05541760650832108
+        },
+        {
+            "config": {
+                "num_events": 100,
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "learning_rate": 0.001,
+                "epsilon": 0.0021,
+                "vertex_stubbornness": 0.1,
+                "batch_size": 100
+            },
+            "accuracies": [
+                0.42,
+                0.61,
+                0.46,
+                0.63,
+                0.48,
+                0.59,
+                0.53,
+                0.58,
+                0.58,
+                0.57
+            ],
+            "average": 0.545,
+            "standard_deviation": 0.06980130530457307
+        },
+        {
+            "config": {
+                "num_events": 100,
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "learning_rate": 0.001,
+                "epsilon": 0.0021,
+                "vertex_stubbornness": 0.2,
+                "batch_size": 100
+            },
+            "accuracies": [
+                0.6,
+                0.5,
+                0.48,
+                0.55,
+                0.57,
+                0.57,
+                0.54,
+                0.64,
+                0.67,
+                0.61
+            ],
+            "average": 0.573,
+            "standard_deviation": 0.05926400443964467
+        },
+        {
+            "config": {
+                "num_events": 100,
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "learning_rate": 0.001,
+                "epsilon": 0.0021,
+                "vertex_stubbornness": 0.3,
+                "batch_size": 100
+            },
+            "accuracies": [
+                0.63,
+                0.54,
+                0.68,
+                0.59,
+                0.59,
+                0.58,
+                0.55,
+                0.4,
+                0.53,
+                0.54
+            ],
+            "average": 0.5630000000000001,
+            "standard_deviation": 0.07364328437361639
+        },
+        {
+            "config": {
+                "num_events": 100,
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "learning_rate": 0.001,
+                "epsilon": 0.0021,
+                "vertex_stubbornness": 0.4,
+                "batch_size": 100
+            },
+            "accuracies": [
+                0.59,
+                0.59,
+                0.55,
+                0.57,
+                0.58,
+                0.61,
+                0.55,
+                0.62,
+                0.56,
+                0.6
+            ],
+            "average": 0.5820000000000001,
+            "standard_deviation": 0.024404006956964146
+        },
+        {
+            "config": {
+                "num_events": 100,
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "learning_rate": 0.001,
+                "epsilon": 0.0021,
+                "vertex_stubbornness": 0.5,
+                "batch_size": 100
+            },
+            "accuracies": [
+                0.68,
+                0.66,
+                0.58,
+                0.53,
+                0.56,
+                0.72,
+                0.72,
+                0.64,
+                0.67,
+                0.58
+            ],
+            "average": 0.634,
+            "standard_deviation": 0.06752777206453651
+        },
+        {
+            "config": {
+                "num_events": 100,
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "learning_rate": 0.001,
+                "epsilon": 0.0021,
+                "vertex_stubbornness": 0.6,
+                "batch_size": 100
+            },
+            "accuracies": [
+                0.68,
+                0.6,
+                0.59,
+                0.63,
+                0.68,
+                0.59,
+                0.7,
+                0.72,
+                0.61,
+                0.54
+            ],
+            "average": 0.634,
+            "standard_deviation": 0.05815687596683837
+        },
+        {
+            "config": {
+                "num_events": 100,
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "learning_rate": 0.001,
+                "epsilon": 0.0021,
+                "vertex_stubbornness": 0.7,
+                "batch_size": 100
+            },
+            "accuracies": [
+                0.69,
+                0.71,
+                0.59,
+                0.67,
+                0.64,
+                0.55,
+                0.71,
+                0.71,
+                0.53,
+                0.71
+            ],
+            "average": 0.651,
+            "standard_deviation": 0.07030884249746493
+        },
+        {
+            "config": {
+                "num_events": 100,
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "learning_rate": 0.001,
+                "epsilon": 0.0021,
+                "vertex_stubbornness": 0.8,
+                "batch_size": 100
+            },
+            "accuracies": [
+                0.7,
+                0.69,
+                0.69,
+                0.6,
+                0.63,
+                0.64,
+                0.66,
+                0.62,
+                0.68,
+                0.68
+            ],
+            "average": 0.659,
+            "standard_deviation": 0.034464152068167546
+        },
+        {
+            "config": {
+                "num_events": 100,
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "learning_rate": 0.001,
+                "epsilon": 0.0021,
+                "vertex_stubbornness": 0.9,
+                "batch_size": 100
+            },
+            "accuracies": [
+                0.6,
+                0.6,
+                0.66,
+                0.61,
+                0.66,
+                0.66,
+                0.63,
+                0.78,
+                0.72,
+                0.71
+            ],
+            "average": 0.663,
+            "standard_deviation": 0.0586988548061677
+        },
+        {
+            "config": {
+                "num_events": 100,
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "learning_rate": 0.001,
+                "epsilon": 0.0021,
+                "vertex_stubbornness": 1,
+                "batch_size": 100
+            },
+            "accuracies": [
+                0.62,
+                0.61,
+                0.71,
+                0.65,
+                0.72,
+                0.65,
+                0.65,
+                0.75,
+                0.68,
+                0.66
+            ],
+            "average": 0.6699999999999999,
+            "standard_deviation": 0.04472135954999579
+        }
+    ]
+}

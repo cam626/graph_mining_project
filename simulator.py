@@ -2,12 +2,13 @@ import multiprocessing as mp
 import argparse
 import json
 import random
+import statistics
 
 import numpy as np
 import networkx as nx
 from tqdm import tqdm
 
-POOL_SIZE = 4
+POOL_SIZE = 11
 
 
 class GraphManager():
@@ -205,8 +206,9 @@ class Simulator():
 
 
 class HyperSimulator():
-    def __init__(self, configs_filename, num_runs):
+    def __init__(self, configs_filename, num_runs, output_file):
         self.num_runs = num_runs
+        self.output_file = output_file
 
         with open(configs_filename, "r") as f:
             self.configurations = json.load(f)["configurations"]
@@ -227,7 +229,24 @@ class HyperSimulator():
         with mp.Pool(POOL_SIZE) as p:
             results = p.map(self.runSimulation, self.nextSimulator())
 
-        return results
+        output = {
+            "results": []
+        }
+
+        for config_index, config in enumerate(self.configurations):
+            temp_result = {
+                "config": config,
+                "accuracies": results[config_index * self.num_runs:(config_index + 1) * self.num_runs]
+            }
+
+            temp_result["average"] = sum(temp_result["accuracies"]) / self.num_runs
+            temp_result["standard_deviation"] = statistics.stdev(temp_result["accuracies"])
+
+            output["results"].append(temp_result)
+
+        with open(self.output_file, "w+") as f:
+            json.dump(output, f, indent=4)
+
 
 if __name__ == "__main__":
     mp.set_start_method("spawn")
@@ -243,9 +262,11 @@ if __name__ == "__main__":
         default=1,
         type=int)
 
+    parser.add_argument("-o", "--output_file",
+        help="The name of the file to output to.",
+        required=True)
+
     args = parser.parse_args()
 
-    sim = HyperSimulator(args.configs, args.num_runs)
-    results = sim.run()
-
-    print("Simulations ended with the following accuracies: {}.".format(results))
+    sim = HyperSimulator(args.configs, args.num_runs, args.output_file)
+    sim.run()

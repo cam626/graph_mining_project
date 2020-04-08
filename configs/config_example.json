@@ -6,7 +6,7 @@
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "sgd",
             "learning_rate": 0.001,
-            "epsilon": 0.001,
+            "epsilon": 0.0021,
             "vertex_stubbornness": 0,
             "batch_size": 100
         },
@@ -16,7 +16,7 @@
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "sgd",
             "learning_rate": 0.001,
-            "epsilon": 0.001,
+            "epsilon": 0.0021,
             "vertex_stubbornness": 0.1,
             "batch_size": 100
         },
@@ -26,7 +26,7 @@
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "sgd",
             "learning_rate": 0.001,
-            "epsilon": 0.001,
+            "epsilon": 0.0021,
             "vertex_stubbornness": 0.2,
             "batch_size": 100
         },
@@ -36,7 +36,7 @@
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "sgd",
             "learning_rate": 0.001,
-            "epsilon": 0.001,
+            "epsilon": 0.0021,
             "vertex_stubbornness": 0.3,
             "batch_size": 100
         },
@@ -46,7 +46,7 @@
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "sgd",
             "learning_rate": 0.001,
-            "epsilon": 0.001,
+            "epsilon": 0.0021,
             "vertex_stubbornness": 0.4,
             "batch_size": 100
         },
@@ -56,7 +56,7 @@
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "sgd",
             "learning_rate": 0.001,
-            "epsilon": 0.001,
+            "epsilon": 0.0021,
             "vertex_stubbornness": 0.5,
             "batch_size": 100
         },
@@ -66,7 +66,7 @@
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "sgd",
             "learning_rate": 0.001,
-            "epsilon": 0.001,
+            "epsilon": 0.0021,
             "vertex_stubbornness": 0.6,
             "batch_size": 100
         },
@@ -76,7 +76,7 @@
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "sgd",
             "learning_rate": 0.001,
-            "epsilon": 0.001,
+            "epsilon": 0.0021,
             "vertex_stubbornness": 0.7,
             "batch_size": 100
         },
@@ -86,7 +86,7 @@
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "sgd",
             "learning_rate": 0.001,
-            "epsilon": 0.001,
+            "epsilon": 0.0021,
             "vertex_stubbornness": 0.8,
             "batch_size": 100
         },
@@ -96,7 +96,7 @@
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "sgd",
             "learning_rate": 0.001,
-            "epsilon": 0.001,
+            "epsilon": 0.0021,
             "vertex_stubbornness": 0.9,
             "batch_size": 100
         },
@@ -106,7 +106,7 @@
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "sgd",
             "learning_rate": 0.001,
-            "epsilon": 0.001,
+            "epsilon": 0.0021,
             "vertex_stubbornness": 1,
             "batch_size": 100
         }
