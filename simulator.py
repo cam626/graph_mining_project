@@ -15,35 +15,43 @@ class GraphManager():
         self.parameters = parameters
 
         self.centrality_methods = {
-            'degree': self.normalized(nx.degree_centrality),
-            'closeness': self.normalized(nx.closeness_centrality),
-            'betweenness': self.normalized(nx.betweenness_centrality),
-            'eigenvector': self.normalized(nx.eigenvector_centrality),
-            'random': self.specialCentrality(method="random"),
-            'sgd': self.specialCentrality()
+            'degree': nx.degree_centrality,
+            'closeness': nx.closeness_centrality,
+            'betweenness': nx.betweenness_centrality,
+            'eigenvector': nx.eigenvector_centrality,
+            'random': self.randomCentrality,
+            'sgd': self.sgdCentrality
         }
 
         self.graph = nx.read_edgelist(parameters["graph_filepath"], create_using=nx.OrderedGraph())
         self.initializeData()
 
 
-    def normalized(self, func):
-        def f(graph):
-            centrality = func(graph)
-            norm = max(centrality.values())
-            for i in centrality:
-                centrality[i] /= norm
-            return centrality
-        return f
+    def normalize(self, centrality):
+        norm = max(centrality.values())
+        for i in centrality:
+            centrality[i] /= norm
+        return centrality
 
-  
-    def specialCentrality(self, method="sgd"):
-        def f(graph):
-            centrality = {}
-            for n in graph:
-                centrality[n] = random.uniform(0,1) if method == "random" else 0.5
-            return centrality
-        return f
+
+    def centrality(self, method):
+        func = self.centrality_methods[method]
+
+        return self.normalize(func(self.graph))
+
+    
+    def randomCentrality(self, graph):
+        centrality = {}
+        for n in graph:
+            centrality[n] = random.uniform(0,1)
+        return centrality
+
+
+    def sgdCentrality(self, graph):
+        centrality = {}
+        for n in graph:
+            centrality[n] = 0.5
+        return centrality
 
 
     def initializeBeliefs(self):
@@ -61,14 +69,14 @@ class GraphManager():
         self.initializeBeliefs()
 
         # Initialize vertex reliability based on the method given
-        centrality = self.centrality_methods[self.parameters["vertex_reliability_method"]](self.graph)
+        centrality = self.centrality(self.parameters["vertex_reliability_method"])
         for n in self.graph:
             self.reliabilities[n] = centrality[n]
 
         # Initialize edge reliability based on the method given
         # Only recalculate centrality if the method is different than that of vertex reliability
         if (self.parameters["vertex_reliability_method"] != self.parameters["edge_reliability_method"]):
-            centrality = self.centrality_methods[self.parameters["edge_reliability_method"]](self.graph)
+            centrality = self.centrality(self.parameters["edge_reliability_method"])
 
         for e in self.graph.edges:
             if (e[0] not in self.perceived):
@@ -178,7 +186,7 @@ class Simulator():
         old_perceived_state = np.zeros(shape=(2*len(self.graph.graph.edges)))
         new_perceived_state = self.graph.getPerceivedState()
         while np.linalg.norm(old_perceived_state-new_perceived_state) > self.parameters["epsilon"]:
-            print(np.linalg.norm(old_perceived_state-new_perceived_state))
+            # print(np.linalg.norm(old_perceived_state-new_perceived_state))
             old_perceived_state = new_perceived_state
             events = self.graph.eventGenerator(self.parameters["batch_size"])
             for event in events:
@@ -193,8 +201,10 @@ class Simulator():
             self.graph.initializeBeliefs()
 
         events = self.graph.eventGenerator(self.parameters["num_events"])
-        for event in tqdm(events, total=self.parameters["num_events"]):
+        for event in events:
             self.graph.processEvent(event)
+
+        return self.graph.accuracy()
 
 
 class HyperSimulator():
@@ -209,7 +219,8 @@ class HyperSimulator():
 
     def nextSimulator(self):
         for config in self.configurations:
-            for _ in range(self.num_runs):
+            for i in range(self.num_runs):
+                print("Run #{} of configuration {}".format(i, config))
                 yield Simulator(config)
 
 
@@ -217,7 +228,7 @@ class HyperSimulator():
         with mp.Pool(POOL_SIZE) as p:
             results = p.map(self.runSimulation, self.nextSimulator())
 
-        print(results)
+        return results
 
 if __name__ == "__main__":
     mp.set_start_method("spawn")
@@ -231,11 +242,12 @@ if __name__ == "__main__":
 
     parser.add_argument("-n", "--num_runs",
         help="The number of times to run each given configuration.",
-        default=1)
+        default=1,
+        type=int)
 
     args = parser.parse_args()
 
     sim = HyperSimulator(args.configs, args.num_runs)
-    sim.run()
+    results = sim.run()
 
-    print("Simulation ended with an accuracy of {}.".format(sim.graph.accuracy()))
+    print("Simulations ended with the following accuracies: {}.".format(results))
