@@ -164,13 +164,40 @@ class GraphManager():
             (-2 * (1 - self.perceived[receiver][sender] * data) * data)
 
 
-    def accuracy(self):
+    def accuracy(self, vertices=None):
         """Returns the percentage of vertices with the correct value."""
         count = 0
-        for i in self.beliefs:
+
+        if vertices == None:
+            vertices = self.beliefs.keys()
+
+        for i in vertices:
             if (self.beliefs[i] >= 0.5):
                 count += 1
-        return count / len(self.beliefs)
+
+        return count / len(vertices)
+
+
+    def getHubNeighborhoods(self):
+        """Returns a list of vertices that are considered to be in the
+        neighborhood of a hub.
+        """
+        hubs = sorted(self.centrality("degree"), reverse=True)
+        hubs = hubs[:-1 * len(hubs) // 10]
+
+        hub_neighbors = []
+        for hub in hubs:
+            hub_neighbors.append(self.graph[hub])
+
+        return hub_neighbors
+
+
+    def hubNeighborhoodAccuracy(self):
+        """Calculates the accuracy of the vertices that are considered to
+        be in the neighborhood of a hub."""
+        hub_neighbors = self.getHubNeighborhoods()
+
+        return self.accuracy(hub_neighbors)
 
 
 class Simulator():
@@ -227,7 +254,7 @@ class HyperSimulator():
 
     def run(self):
         with mp.Pool(POOL_SIZE) as p:
-            results = p.map(self.runSimulation, self.nextSimulator())
+            results = list(tqdm(p.imap(self.runSimulation, self.nextSimulator()), total=len(self.configurations)*self.num_runs))
 
         output = {
             "results": []
@@ -240,7 +267,10 @@ class HyperSimulator():
             }
 
             temp_result["average"] = sum(temp_result["accuracies"]) / self.num_runs
-            temp_result["standard_deviation"] = statistics.stdev(temp_result["accuracies"])
+            if len(temp_result["accuracies"]) >= 2:
+                temp_result["standard_deviation"] = statistics.stdev(temp_result["accuracies"])
+            else:
+                temp_result["standard_deviation"] = 0
 
             output["results"].append(temp_result)
 
