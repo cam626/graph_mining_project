@@ -10,6 +10,12 @@ from tqdm import tqdm
 
 POOL_SIZE = 11
 
+NUM_EVENTS = 1000
+BATCH_SIZE = 100
+LEARNING_RATE = 1e-3
+LEARNING_RATE_UPDATE_TIME = 1e3
+EPSILON = 1e-3
+
 
 class GraphManager():
     def __init__(self, parameters):
@@ -159,7 +165,7 @@ class GraphManager():
         receiver = event[1]
         data = event[2]
 
-        eta = self.parameters["learning_rate"]
+        eta = LEARNING_RATE
         self.perceived[receiver][sender] = self.perceived[receiver][sender] - eta * \
             (-2 * (1 - self.perceived[receiver][sender] * data) * data)
 
@@ -178,28 +184,6 @@ class GraphManager():
         return count / len(vertices)
 
 
-    def getHubNeighborhoods(self):
-        """Returns a list of vertices that are considered to be in the
-        neighborhood of a hub.
-        """
-        hubs = sorted(self.centrality("degree"), reverse=True)
-        hubs = hubs[:-1 * len(hubs) // 10]
-
-        hub_neighbors = []
-        for hub in hubs:
-            hub_neighbors.append(self.graph[hub])
-
-        return hub_neighbors
-
-
-    def hubNeighborhoodAccuracy(self):
-        """Calculates the accuracy of the vertices that are considered to
-        be in the neighborhood of a hub."""
-        hub_neighbors = self.getHubNeighborhoods()
-
-        return self.accuracy(hub_neighbors)
-
-
 class Simulator():
     def __init__(self, config):
         self.parameters = config
@@ -208,16 +192,25 @@ class Simulator():
 
 
     def train(self):
+        global LEARNING_RATE
+
         old_perceived_state = np.zeros(shape=(2*len(self.graph.graph.edges)))
         new_perceived_state = self.graph.getPerceivedState()
-        while np.linalg.norm(old_perceived_state-new_perceived_state) > self.parameters["epsilon"]:
-            # print(np.linalg.norm(old_perceived_state-new_perceived_state))
+
+        batch_num = 1
+        while np.linalg.norm(old_perceived_state-new_perceived_state) > EPSILON:
             old_perceived_state = new_perceived_state
-            events = self.graph.eventGenerator(self.parameters["batch_size"])
+            events = self.graph.eventGenerator(BATCH_SIZE)
             for event in events:
                 self.graph.processEvent(event)
                 self.graph.train(event)
             new_perceived_state = self.graph.getPerceivedState()
+
+            # Step Decay Adaptive Learning Rate
+            batch_num += 1
+            if batch_num % LEARNING_RATE_UPDATE_TIME == 0:
+                LEARNING_RATE /= 2
+                print("Updated learning rate to {}".format(LEARNING_RATE))
 
 
     def run(self):
@@ -225,7 +218,7 @@ class Simulator():
             self.train()
             self.graph.initializeBeliefs()
 
-        events = self.graph.eventGenerator(self.parameters["num_events"])
+        events = self.graph.eventGenerator(NUM_EVENTS)
         for event in events:
             self.graph.processEvent(event)
 

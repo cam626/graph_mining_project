@@ -1,0 +1,17 @@
+{
+    "results": [
+        {
+            "config": {
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "vertex_stubbornness": 1
+            },
+            "accuracies": [
+                0.71
+            ],
+            "average": 0.71,
+            "standard_deviation": 0
+        }
+    ]
+}
