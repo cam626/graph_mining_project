@@ -33,11 +33,14 @@ class GraphManager():
 
 
     def pruneGraph(self):
-        #for each hub, reduce it's in-degree, while loop and random choice
-        # hubs = self.getHubs()
-        # for h in hubs:
-        #     while self.graph
-        pass
+        hubs = self.getHubs()
+        for h in hubs:
+            pre = list(self.graph.predecessors(h))
+            reduced = len(pre) * 0.2
+            while (self.graph.in_degree(h) > reduced):
+                remove = random.choice(pre)
+                pre.remove(remove)
+                self.graph.remove_edge(remove, h)
 
 
     def getHubs(self):
@@ -79,7 +82,7 @@ class GraphManager():
         centrality = {}
         centrality_left = nx.eigenvector_centrality(graph)
         centrality_right = nx.eigenvector_centrality(graph.reverse())
-        for n in centrality_in:
+        for n in centrality_left:
             centrality[n] = (centrality_left[n] + centrality_right[n]) / 2
         return centrality
 
