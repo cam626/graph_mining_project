@@ -16,16 +16,39 @@ class GraphManager():
         self.parameters = parameters
 
         self.centrality_methods = {
-            'degree': nx.degree_centrality,
+            'degree': self.degreeCentrality,
             'closeness': nx.closeness_centrality,
             'betweenness': nx.betweenness_centrality,
-            'eigenvector': nx.eigenvector_centrality,
+            'eigenvector': self.eigenvectorCentrality,
             'random': self.randomCentrality,
             'sgd': self.sgdCentrality
         }
 
-        self.graph = nx.read_edgelist(parameters["graph_filepath"], create_using=nx.OrderedGraph())
+        G = nx.read_edgelist(parameters["graph_filepath"], create_using=nx.OrderedDiGraph())
+        
+        self.graph = nx.union(G, G.reverse())
+        self.pruneGraph()
+        
         self.initializeData()
+
+
+    def pruneGraph(self):
+        #for each hub, reduce it's in-degree, while loop and random choice
+        # hubs = self.getHubs()
+        # for h in hubs:
+        #     while self.graph
+        pass
+
+
+    def getHubs(self):
+        centrality = self.degreeCentrality(self.graph)
+        cutoff = (sum(centrality.values()) / len(centrality)) + 1.5 * statistics.stdev(centrality.values())
+
+        hubs = []
+        for n in centrality:
+            if (centrality[n] >= cutoff):
+                hubs.append(n)
+        return hubs
 
 
     def normalize(self, centrality):
@@ -38,11 +61,29 @@ class GraphManager():
     def centrality(self, method):
         func = self.centrality_methods[method]
 
-        if method in ["sgd", "random"]:
+        if method in ["sgd", "random", 'degree']:
             return func(self.graph)
         return self.normalize(func(self.graph))
 
-    
+
+    def degreeCentrality(self, graph):
+        centrality = {}
+        centrality_in = nx.in_degree_centrality(graph)
+        centrality_out = nx.out_degree_centrality(graph)
+        for n in centrality_in:
+            centrality[n] = (centrality_in[n] + centrality_out[n]) / 2
+        return centrality
+
+
+    def eigenvectorCentrality(self, graph):
+        centrality = {}
+        centrality_left = nx.eigenvector_centrality(graph)
+        centrality_right = nx.eigenvector_centrality(graph.reverse())
+        for n in centrality_in:
+            centrality[n] = (centrality_left[n] + centrality_right[n]) / 2
+        return centrality
+
+
     def randomCentrality(self, graph):
         centrality = {}
         for n in graph:
