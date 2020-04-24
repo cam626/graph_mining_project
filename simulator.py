@@ -10,22 +10,54 @@ from tqdm import tqdm
 
 POOL_SIZE = 11
 
+NUM_EVENTS = 1000
+BATCH_SIZE = 100
+LEARNING_RATE = 1e-3
+LEARNING_RATE_UPDATE_TIME = 1e3
+EPSILON = 1e-3
+
 
 class GraphManager():
     def __init__(self, parameters):
         self.parameters = parameters
 
         self.centrality_methods = {
-            'degree': nx.degree_centrality,
+            'degree': self.degreeCentrality,
             'closeness': nx.closeness_centrality,
             'betweenness': nx.betweenness_centrality,
-            'eigenvector': nx.eigenvector_centrality,
+            'eigenvector': self.eigenvectorCentrality,
             'random': self.randomCentrality,
             'sgd': self.sgdCentrality
         }
 
-        self.graph = nx.read_edgelist(parameters["graph_filepath"], create_using=nx.OrderedGraph())
+        G = nx.read_edgelist(parameters["graph_filepath"], create_using=nx.OrderedDiGraph())
+        
+        self.graph = G.to_directed()
+        self.pruneGraph()
+        
         self.initializeData()
+
+
+    def pruneGraph(self):
+        hubs = self.getHubs()
+        for h in hubs:
+            pre = list(self.graph.predecessors(h))
+            reduced = len(pre) * 0.2
+            while (self.graph.in_degree(h) > reduced):
+                remove = random.choice(pre)
+                pre.remove(remove)
+                self.graph.remove_edge(remove, h)
+
+
+    def getHubs(self):
+        centrality = self.degreeCentrality(self.graph)
+        cutoff = (sum(centrality.values()) / len(centrality)) + 1.5 * statistics.stdev(centrality.values())
+
+        hubs = []
+        for n in centrality:
+            if (centrality[n] >= cutoff):
+                hubs.append(n)
+        return hubs
 
 
     def normalize(self, centrality):
@@ -38,11 +70,29 @@ class GraphManager():
     def centrality(self, method):
         func = self.centrality_methods[method]
 
-        if method in ["sgd", "random"]:
+        if method in ["sgd", "random", 'degree']:
             return func(self.graph)
         return self.normalize(func(self.graph))
 
-    
+
+    def degreeCentrality(self, graph):
+        centrality = {}
+        centrality_in = nx.in_degree_centrality(graph)
+        centrality_out = nx.out_degree_centrality(graph)
+        for n in centrality_in:
+            centrality[n] = (centrality_in[n] + centrality_out[n]) / 2
+        return centrality
+
+
+    def eigenvectorCentrality(self, graph):
+        centrality = {}
+        centrality_left = nx.eigenvector_centrality(graph)
+        centrality_right = nx.eigenvector_centrality(graph.reverse())
+        for n in centrality_left:
+            centrality[n] = (centrality_left[n] + centrality_right[n]) / 2
+        return centrality
+
+
     def randomCentrality(self, graph):
         centrality = {}
         for n in graph:
@@ -159,18 +209,33 @@ class GraphManager():
         receiver = event[1]
         data = event[2]
 
-        eta = self.parameters["learning_rate"]
+        eta = LEARNING_RATE
         self.perceived[receiver][sender] = self.perceived[receiver][sender] - eta * \
             (-2 * (1 - self.perceived[receiver][sender] * data) * data)
 
 
-    def accuracy(self):
+    def accuracy(self, vertices=None):
         """Returns the percentage of vertices with the correct value."""
         count = 0
-        for i in self.beliefs:
+
+        if vertices == None:
+            vertices = self.beliefs.keys()
+
+        for i in vertices:
             if (self.beliefs[i] >= 0.5):
                 count += 1
-        return count / len(self.beliefs)
+
+        return count / len(vertices)
+
+
+    def hubNeighborhoodAccuracy(self):
+        hubs = self.getHubs()
+
+        hub_neighbors = set()
+        for hub in hubs:
+            hub_neighbors = hub_neighbors.union(set(self.graph.neighbors(hub)))
+
+        return self.accuracy(hub_neighbors)
 
 
 class Simulator():
@@ -181,16 +246,24 @@ class Simulator():
 
 
     def train(self):
+        global LEARNING_RATE
+
         old_perceived_state = np.zeros(shape=(2*len(self.graph.graph.edges)))
         new_perceived_state = self.graph.getPerceivedState()
-        while np.linalg.norm(old_perceived_state-new_perceived_state) > self.parameters["epsilon"]:
-            # print(np.linalg.norm(old_perceived_state-new_perceived_state))
+
+        batch_num = 1
+        while np.linalg.norm(old_perceived_state-new_perceived_state) > EPSILON:
             old_perceived_state = new_perceived_state
-            events = self.graph.eventGenerator(self.parameters["batch_size"])
+            events = self.graph.eventGenerator(BATCH_SIZE)
             for event in events:
                 self.graph.processEvent(event)
                 self.graph.train(event)
             new_perceived_state = self.graph.getPerceivedState()
+
+            # Step Decay Adaptive Learning Rate
+            batch_num += 1
+            if batch_num % LEARNING_RATE_UPDATE_TIME == 0:
+                LEARNING_RATE /= 2
 
 
     def run(self):
@@ -198,7 +271,7 @@ class Simulator():
             self.train()
             self.graph.initializeBeliefs()
 
-        events = self.graph.eventGenerator(self.parameters["num_events"])
+        events = self.graph.eventGenerator(NUM_EVENTS)
         for event in events:
             self.graph.processEvent(event)
 
@@ -215,7 +288,12 @@ class HyperSimulator():
 
 
     def runSimulation(self, simulator):
-        return simulator.run()
+        accuracy = simulator.run()
+        hub_neighborhood_accuracy = simulator.graph.hubNeighborhoodAccuracy()
+        return {
+            "accuracy": accuracy,
+            "hub_neighborhood_accuracy": hub_neighborhood_accuracy
+        }
 
 
     def nextSimulator(self):
@@ -227,20 +305,38 @@ class HyperSimulator():
 
     def run(self):
         with mp.Pool(POOL_SIZE) as p:
-            results = p.map(self.runSimulation, self.nextSimulator())
+            results = list(tqdm(p.imap(self.runSimulation, self.nextSimulator()), total=len(self.configurations)*self.num_runs))
 
         output = {
             "results": []
         }
 
         for config_index, config in enumerate(self.configurations):
+            partial_results = results[config_index * self.num_runs:(config_index + 1) * self.num_runs]
+
             temp_result = {
-                "config": config,
-                "accuracies": results[config_index * self.num_runs:(config_index + 1) * self.num_runs]
+                "config": config
             }
 
-            temp_result["average"] = sum(temp_result["accuracies"]) / self.num_runs
-            temp_result["standard_deviation"] = statistics.stdev(temp_result["accuracies"])
+            accuracies = []
+            hub_neighborhood_accuracies = []
+
+            for result in partial_results:
+                accuracies.append(result["accuracy"])
+                hub_neighborhood_accuracies.append(result["hub_neighborhood_accuracy"])
+
+            temp_result["accuracies"] = accuracies
+            temp_result["hub_neighborhood_accuracies"] = hub_neighborhood_accuracies
+
+            temp_result["average_accuracy"] = sum(temp_result["accuracies"]) / self.num_runs
+            temp_result["average_hub_neighborhood_accuracy"] = sum(temp_result["hub_neighborhood_accuracies"]) / self.num_runs
+
+            if self.num_runs >= 2:
+                temp_result["accuracy_standard_deviation"] = statistics.stdev(temp_result["accuracies"])
+                temp_result["hub_neighborhood_accuracy_standard_deviation"] = statistics.stdev(temp_result["hub_neighborhood_accuracies"])
+            else:
+                temp_result["accuracy_standard_deviation"] = 0
+                temp_result["hub_neighborhood_accuracy_standard_deviation"] = 0
 
             output["results"].append(temp_result)
 
