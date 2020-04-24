@@ -235,8 +235,6 @@ class GraphManager():
         for hub in hubs:
             hub_neighbors = hub_neighbors.union(set(self.graph.neighbors(hub)))
 
-        print(hub_neighbors)
-
         return self.accuracy(hub_neighbors)
 
 
@@ -266,7 +264,6 @@ class Simulator():
             batch_num += 1
             if batch_num % LEARNING_RATE_UPDATE_TIME == 0:
                 LEARNING_RATE /= 2
-                print("Updated learning rate to {}".format(LEARNING_RATE))
 
 
     def run(self):
