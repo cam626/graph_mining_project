@@ -32,7 +32,7 @@ class GraphManager():
 
         G = nx.read_edgelist(parameters["graph_filepath"], create_using=nx.OrderedDiGraph())
         
-        self.graph = nx.union(G, G.reverse())
+        self.graph = G.to_directed()
         self.pruneGraph()
         
         self.initializeData()
