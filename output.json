@@ -8,10 +8,305 @@
                 "vertex_stubbornness": 1
             },
             "accuracies": [
-                0.71
+                0.69,
+                0.68,
+                0.69,
+                0.63,
+                0.59,
+                0.61
             ],
-            "average": 0.71,
-            "standard_deviation": 0
+            "hub_neighborhood_accuracies": [
+                0.6923076923076923,
+                0.6538461538461539,
+                0.6666666666666666,
+                0.6282051282051282,
+                0.6282051282051282,
+                0.5769230769230769
+            ],
+            "average_accuracy": 0.6483333333333333,
+            "average_hub_neighborhood_accuracy": 0.641025641025641,
+            "accuracy_standard_deviation": 0.044007575105505035,
+            "hub_neighborhood_accuracy_standard_deviation": 0.03972290611494787
+        },
+        {
+            "config": {
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "vertex_stubbornness": 0.9
+            },
+            "accuracies": [
+                0.53,
+                0.71,
+                0.59,
+                0.54,
+                0.46,
+                0.62
+            ],
+            "hub_neighborhood_accuracies": [
+                0.46153846153846156,
+                0.7051282051282052,
+                0.5897435897435898,
+                0.5,
+                0.41025641025641024,
+                0.6282051282051282
+            ],
+            "average_accuracy": 0.5750000000000001,
+            "average_hub_neighborhood_accuracy": 0.5491452991452991,
+            "accuracy_standard_deviation": 0.0859651092013498,
+            "hub_neighborhood_accuracy_standard_deviation": 0.11100422209059133
+        },
+        {
+            "config": {
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "vertex_stubbornness": 0.8
+            },
+            "accuracies": [
+                0.62,
+                0.58,
+                0.54,
+                0.65,
+                0.61,
+                0.61
+            ],
+            "hub_neighborhood_accuracies": [
+                0.5512820512820513,
+                0.5256410256410257,
+                0.5384615384615384,
+                0.6153846153846154,
+                0.5897435897435898,
+                0.6282051282051282
+            ],
+            "average_accuracy": 0.6016666666666667,
+            "average_hub_neighborhood_accuracy": 0.5747863247863249,
+            "accuracy_standard_deviation": 0.03763863263545405,
+            "hub_neighborhood_accuracy_standard_deviation": 0.04245635626331553
+        },
+        {
+            "config": {
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "vertex_stubbornness": 0.7
+            },
+            "accuracies": [
+                0.51,
+                0.57,
+                0.51,
+                0.51,
+                0.55,
+                0.68
+            ],
+            "hub_neighborhood_accuracies": [
+                0.46153846153846156,
+                0.5512820512820513,
+                0.47435897435897434,
+                0.47435897435897434,
+                0.5,
+                0.6538461538461539
+            ],
+            "average_accuracy": 0.555,
+            "average_hub_neighborhood_accuracy": 0.5192307692307693,
+            "accuracy_standard_deviation": 0.0662570750939098,
+            "hub_neighborhood_accuracy_standard_deviation": 0.07331271002818358
+        },
+        {
+            "config": {
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "vertex_stubbornness": 0.6
+            },
+            "accuracies": [
+                0.5,
+                0.41,
+                0.55,
+                0.6,
+                0.48,
+                0.51
+            ],
+            "hub_neighborhood_accuracies": [
+                0.5,
+                0.34615384615384615,
+                0.5641025641025641,
+                0.5897435897435898,
+                0.4230769230769231,
+                0.48717948717948717
+            ],
+            "average_accuracy": 0.5083333333333333,
+            "average_hub_neighborhood_accuracy": 0.48504273504273504,
+            "accuracy_standard_deviation": 0.06431692364119002,
+            "hub_neighborhood_accuracy_standard_deviation": 0.09007873926751762
+        },
+        {
+            "config": {
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "vertex_stubbornness": 0.5
+            },
+            "accuracies": [
+                0.5,
+                0.56,
+                0.52,
+                0.58,
+                0.52,
+                0.44
+            ],
+            "hub_neighborhood_accuracies": [
+                0.5,
+                0.5256410256410257,
+                0.5256410256410257,
+                0.5641025641025641,
+                0.5,
+                0.4358974358974359
+            ],
+            "average_accuracy": 0.52,
+            "average_hub_neighborhood_accuracy": 0.5085470085470085,
+            "accuracy_standard_deviation": 0.04898979485566356,
+            "hub_neighborhood_accuracy_standard_deviation": 0.04264948700811846
+        },
+        {
+            "config": {
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "vertex_stubbornness": 0.4
+            },
+            "accuracies": [
+                0.59,
+                0.56,
+                0.49,
+                0.48,
+                0.5,
+                0.53
+            ],
+            "hub_neighborhood_accuracies": [
+                0.5256410256410257,
+                0.5128205128205128,
+                0.46153846153846156,
+                0.4358974358974359,
+                0.48717948717948717,
+                0.5
+            ],
+            "average_accuracy": 0.525,
+            "average_hub_neighborhood_accuracy": 0.48717948717948717,
+            "accuracy_standard_deviation": 0.04324349662087931,
+            "hub_neighborhood_accuracy_standard_deviation": 0.033431807206167424
+        },
+        {
+            "config": {
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "vertex_stubbornness": 0.3
+            },
+            "accuracies": [
+                0.47,
+                0.55,
+                0.59,
+                0.53,
+                0.51,
+                0.47
+            ],
+            "hub_neighborhood_accuracies": [
+                0.4358974358974359,
+                0.5128205128205128,
+                0.5897435897435898,
+                0.48717948717948717,
+                0.4358974358974359,
+                0.4358974358974359
+            ],
+            "average_accuracy": 0.5199999999999999,
+            "average_hub_neighborhood_accuracy": 0.48290598290598297,
+            "accuracy_standard_deviation": 0.046904157598234304,
+            "hub_neighborhood_accuracy_standard_deviation": 0.061574063775479915
+        },
+        {
+            "config": {
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "vertex_stubbornness": 0.2
+            },
+            "accuracies": [
+                0.57,
+                0.59,
+                0.55,
+                0.5,
+                0.48,
+                0.46
+            ],
+            "hub_neighborhood_accuracies": [
+                0.5897435897435898,
+                0.5897435897435898,
+                0.5512820512820513,
+                0.46153846153846156,
+                0.46153846153846156,
+                0.46153846153846156
+            ],
+            "average_accuracy": 0.525,
+            "average_hub_neighborhood_accuracy": 0.5192307692307693,
+            "accuracy_standard_deviation": 0.052440442408507565,
+            "hub_neighborhood_accuracy_standard_deviation": 0.06474041627155178
+        },
+        {
+            "config": {
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "vertex_stubbornness": 0.1
+            },
+            "accuracies": [
+                0.57,
+                0.48,
+                0.48,
+                0.55,
+                0.56,
+                0.45
+            ],
+            "hub_neighborhood_accuracies": [
+                0.5,
+                0.44871794871794873,
+                0.47435897435897434,
+                0.5384615384615384,
+                0.5512820512820513,
+                0.4358974358974359
+            ],
+            "average_accuracy": 0.515,
+            "average_hub_neighborhood_accuracy": 0.4914529914529915,
+            "accuracy_standard_deviation": 0.0508920425999979,
+            "hub_neighborhood_accuracy_standard_deviation": 0.04704738100691585
+        },
+        {
+            "config": {
+                "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+                "vertex_reliability_method": "degree",
+                "edge_reliability_method": "sgd",
+                "vertex_stubbornness": 0
+            },
+            "accuracies": [
+                0.44,
+                0.49,
+                0.47,
+                0.49,
+                0.5,
+                0.5
+            ],
+            "hub_neighborhood_accuracies": [
+                0.358974358974359,
+                0.5,
+                0.44871794871794873,
+                0.4230769230769231,
+                0.48717948717948717,
+                0.46153846153846156
+            ],
+            "average_accuracy": 0.48166666666666663,
+            "average_hub_neighborhood_accuracy": 0.4465811965811966,
+            "accuracy_standard_deviation": 0.02316606713852541,
+            "hub_neighborhood_accuracy_standard_deviation": 0.05090674633352688
         }
     ]
 }

@@ -228,6 +228,18 @@ class GraphManager():
         return count / len(vertices)
 
 
+    def hubNeighborhoodAccuracy(self):
+        hubs = self.getHubs()
+
+        hub_neighbors = set()
+        for hub in hubs:
+            hub_neighbors = hub_neighbors.union(set(self.graph.neighbors(hub)))
+
+        print(hub_neighbors)
+
+        return self.accuracy(hub_neighbors)
+
+
 class Simulator():
     def __init__(self, config):
         self.parameters = config
@@ -279,7 +291,12 @@ class HyperSimulator():
 
 
     def runSimulation(self, simulator):
-        return simulator.run()
+        accuracy = simulator.run()
+        hub_neighborhood_accuracy = simulator.graph.hubNeighborhoodAccuracy()
+        return {
+            "accuracy": accuracy,
+            "hub_neighborhood_accuracy": hub_neighborhood_accuracy
+        }
 
 
     def nextSimulator(self):
@@ -298,16 +315,31 @@ class HyperSimulator():
         }
 
         for config_index, config in enumerate(self.configurations):
+            partial_results = results[config_index * self.num_runs:(config_index + 1) * self.num_runs]
+
             temp_result = {
-                "config": config,
-                "accuracies": results[config_index * self.num_runs:(config_index + 1) * self.num_runs]
+                "config": config
             }
 
-            temp_result["average"] = sum(temp_result["accuracies"]) / self.num_runs
-            if len(temp_result["accuracies"]) >= 2:
-                temp_result["standard_deviation"] = statistics.stdev(temp_result["accuracies"])
+            accuracies = []
+            hub_neighborhood_accuracies = []
+
+            for result in partial_results:
+                accuracies.append(result["accuracy"])
+                hub_neighborhood_accuracies.append(result["hub_neighborhood_accuracy"])
+
+            temp_result["accuracies"] = accuracies
+            temp_result["hub_neighborhood_accuracies"] = hub_neighborhood_accuracies
+
+            temp_result["average_accuracy"] = sum(temp_result["accuracies"]) / self.num_runs
+            temp_result["average_hub_neighborhood_accuracy"] = sum(temp_result["hub_neighborhood_accuracies"]) / self.num_runs
+
+            if self.num_runs >= 2:
+                temp_result["accuracy_standard_deviation"] = statistics.stdev(temp_result["accuracies"])
+                temp_result["hub_neighborhood_accuracy_standard_deviation"] = statistics.stdev(temp_result["hub_neighborhood_accuracies"])
             else:
-                temp_result["standard_deviation"] = 0
+                temp_result["accuracy_standard_deviation"] = 0
+                temp_result["hub_neighborhood_accuracy_standard_deviation"] = 0
 
             output["results"].append(temp_result)
 
