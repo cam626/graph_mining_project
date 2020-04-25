@@ -86,6 +86,7 @@ class GraphManager():
 
     def eigenvectorCentrality(self, graph):
         centrality = {}
+        
         centrality_left = nx.eigenvector_centrality(graph)
         centrality_right = nx.eigenvector_centrality(graph.reverse())
         for n in centrality_left:
@@ -287,7 +288,8 @@ class HyperSimulator():
             self.configurations = json.load(f)["configurations"]
 
 
-    def runSimulation(self, simulator):
+    def runSimulation(self, config):
+        simulator = Simulator(config)
         accuracy = simulator.run()
         hub_neighborhood_accuracy = simulator.graph.hubNeighborhoodAccuracy()
         return {
@@ -300,12 +302,12 @@ class HyperSimulator():
         for config_index, config in enumerate(self.configurations):
             for i in range(self.num_runs):
                 print("Starting run #{} of configuration {}".format(i, config_index))
-                yield Simulator(config)
+                yield config
 
 
     def run(self):
         with mp.Pool(POOL_SIZE) as p:
-            results = list(tqdm(p.imap(self.runSimulation, self.nextSimulator()), total=len(self.configurations)*self.num_runs))
+            results = list(p.map(self.runSimulation, self.nextSimulator()))
 
         output = {
             "results": []
