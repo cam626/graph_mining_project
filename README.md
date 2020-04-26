@@ -4,7 +4,7 @@ In the world that we live in, information is constantly flowing from sources to 
 
 ## Initialization
 
-To start, each vertex is given an initial state of what they believe is true. These beliefs are randomly initialized between 0.0 and 1 with a uniform distribution. Each vertex must also be given a reliability value that indicates how likely they are to communicate what they believe to be true when sending information to another vertex. These vertex reliability values can be based on the following properties:
+To start, each vertex is given an initial state of what they believe is true. These beliefs are randomly initialized between 0.25 and 1, with a uniform distribution, so that the network has a slight trend toward truth. Each vertex must also be given a reliability value that indicates how likely they are to communicate what they believe to be true when sending information to another vertex. These vertex reliability values can be based on the following properties:
 
 - Degree Centrality
 - Closeness Centrality
