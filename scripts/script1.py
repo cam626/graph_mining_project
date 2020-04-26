@@ -26,11 +26,13 @@ def makeGraphs(list, graph):
         plt.xlabel("Vertex Stubborness")
         plt.legend(loc='upper left')   
         if (j == 'degree'):
-            plt.title("Degree Vertex Reliability" + " " + graph)
+            title = "Degree Vertex Reliability" + " " + graph
         if (j == 'closeness'):
-            plt.title("Closeness Vertex Reliability" + " " + graph)
+            title = "Closeness Vertex Reliability" + " " + graph
         if (j == 'betweenness'):
-            plt.title("Betweenness Vertex Reliability" + " " + graph)
+            title = "Betweenness Vertex Reliability" + " " + graph
+        plt.title(title)
+        plt.savefig("plots/" + title)
         plt.show() 
 
     # vertex random
@@ -45,8 +47,9 @@ def makeGraphs(list, graph):
         plt.ylabel("Average Accuracy")
         plt.xlabel("Vertex Stubborness")
         plt.legend(loc='upper left')       
-        plt.title("Random Vertex Reliability" + " " + graph)
-    
+        title = "Random Vertex Reliability" + " " + graph
+        plt.title(title)
+        plt.savefig("plots/" + title)
     plt.show()    
 
 ### barabasi-albert ###
