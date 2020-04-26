@@ -51,4 +51,4 @@ if __name__ == "__main__":
             plt.ylabel("Accuracy (%)")
             plt.xlabel("Vertex Stubbornness (%)")
             plt.title(title)
-            plt.savefig(title)
+            plt.savefig("plots/" + title)
