@@ -29,14 +29,16 @@ if __name__ == "__main__":
 
         if graph_key_inner not in plot_data[graph_key]:
             plot_data[graph_key][graph_key_inner] = {
-                "accuracy": [],
-                "hub_accuracy": []
+                "accuracy": [0] * 11,
+                "hub_accuracy": [0] * 11
             }
+
+        index = int(stub * 10)
 
         accuracy = result["average_accuracy"]
         hub_accuracy = result["average_hub_neighborhood_accuracy"]
-        plot_data[graph_key][graph_key_inner]["accuracy"].append(accuracy)
-        plot_data[graph_key][graph_key_inner]["hub_accuracy"].append(hub_accuracy)
+        plot_data[graph_key][graph_key_inner]["accuracy"][index] = accuracy
+        plot_data[graph_key][graph_key_inner]["hub_accuracy"][index] = hub_accuracy
 
     x_axis = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
     for graph_type, graphs in plot_data.items():

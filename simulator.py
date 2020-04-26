@@ -112,7 +112,7 @@ class GraphManager():
         self.beliefs = {}
 
         for n in self.graph:
-            self.beliefs[n] = random.uniform(0.25,1)
+            self.beliefs[n] = random.uniform(0,1)
 
 
     def initializeData(self):
