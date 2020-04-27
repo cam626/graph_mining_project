@@ -1,24 +1,44 @@
-import multiprocessing as mp
+'''
+    Trust Based Information Diffusion Simulator
+
+    Cameron Scott, Noah Prisament
+
+    This file contains a simulator for a trust based information diffusion project
+    that attempts to highlight flaws in the trust networks of society.
+
+    April, 2020.
+'''
+
 import argparse
 import json
+import multiprocessing as mp
 import random
 import statistics
 
-import numpy as np
 import networkx as nx
+import numpy as np
 from tqdm import tqdm
 
+'''Specify how many processes to run the simulations on'''
 POOL_SIZE = 11
 
-NUM_EVENTS = 1000
-BATCH_SIZE = 100
-LEARNING_RATE = 1e-3
-LEARNING_RATE_UPDATE_TIME = 1e3
-EPSILON = 1e-3
+NUM_EVENTS = 1000                   # How many events to run diffusion for
+BATCH_SIZE = 100                    # The number of events to train on before evaluating convergence
+LEARNING_RATE = 1e-3                # The rate at which SGD updates weights
+LEARNING_RATE_UPDATE_TIME = 1e3     # The number of batches to train before decreasing the learning rate
+EPSILON = 1e-3                      # The convergence threshold for SGD
 
 
 class GraphManager():
+    '''A controller for all graph operations'''
+
     def __init__(self, parameters):
+        '''Set the graph up with all initial data and pruning.
+        
+        This includes parsing the graph file, pruning hubs of the graph
+        and initializing vertex beliefs, vertex reliabilities and trust
+        values on edges.
+        '''
         self.parameters = parameters
 
         self.centrality_methods = {
@@ -39,6 +59,9 @@ class GraphManager():
 
 
     def pruneGraph(self):
+        '''Randomly remove 80% of incoming edges from vertices defined
+        as hubs.
+        '''
         hubs = self.getHubs()
         for h in hubs:
             pre = list(self.graph.predecessors(h))
@@ -50,6 +73,9 @@ class GraphManager():
 
 
     def getHubs(self):
+        '''Identify and return all of the vertices that are classified as hubs
+        in the graph.
+        '''
         centrality = self.degreeCentrality(self.graph)
         cutoff = (sum(centrality.values()) / len(centrality)) + 1.5 * statistics.stdev(centrality.values())
 
@@ -61,6 +87,8 @@ class GraphManager():
 
 
     def normalize(self, centrality):
+        '''Normalize a dictionary of centrality values.
+        '''
         norm = max(centrality.values())
         for i in centrality:
             centrality[i] /= norm
@@ -68,6 +96,9 @@ class GraphManager():
 
 
     def centrality(self, method):
+        '''Apply a given centrality function to the graph and return the
+        normalized results.
+        '''
         func = self.centrality_methods[method]
 
         if method in ["sgd", "random", 'degree']:
@@ -76,6 +107,8 @@ class GraphManager():
 
 
     def degreeCentrality(self, graph):
+        '''Compute the degree centrality of the graph.
+        '''
         centrality = {}
         centrality_in = nx.in_degree_centrality(graph)
         centrality_out = nx.out_degree_centrality(graph)
@@ -85,6 +118,8 @@ class GraphManager():
 
 
     def eigenvectorCentrality(self, graph):
+        '''Compute the eigenvector centrality of the graph.
+        '''
         centrality = {}
         
         centrality_left = nx.eigenvector_centrality(graph)
@@ -95,6 +130,8 @@ class GraphManager():
 
 
     def randomCentrality(self, graph):
+        '''Assign each vertex a random centrality value.
+        '''
         centrality = {}
         for n in graph:
             centrality[n] = random.uniform(0,1)
@@ -102,6 +139,8 @@ class GraphManager():
 
 
     def sgdCentrality(self, graph):
+        '''Assign each vertex a centrality value of 0.5.
+        '''
         centrality = {}
         for n in graph:
             centrality[n] = 0.5
@@ -109,6 +148,8 @@ class GraphManager():
 
 
     def initializeBeliefs(self):
+        '''Initialize the belief of each vertex randomly between 0.25 and 1.
+        '''
         self.beliefs = {}
 
         for n in self.graph:
@@ -116,6 +157,9 @@ class GraphManager():
 
 
     def initializeData(self):
+        '''Handle all data intialization on the graph including
+        beliefs, vertex reliabilities and trust values.
+        '''
         self.reliabilities = {}
         self.perceived = {}
 
@@ -143,8 +187,8 @@ class GraphManager():
 
 
     def event(self):
-        """Create a single event randomly that send the belief of the sender
-        to the receiver based on the senders reliability."""
+        '''Create a single event randomly that send the belief of the sender
+        to the receiver based on the senders reliability.'''
         edge = random.choice(list(self.graph.edges))
         
         data = self.beliefs[edge[0]]
@@ -157,13 +201,15 @@ class GraphManager():
 
 
     def eventGenerator(self, n):
-        """A generator that yields events until the number of events generated
-        is equal to the number requested in the argument."""
+        '''A generator that yields events until the number of events generated
+        is equal to the number requested in the argument.'''
         for _ in range(n):
             yield self.event()
 
 
     def getPerceivedState(self):
+        '''Return the edge states for the entire graph, in the same order each call.
+        '''
         state = np.array([])
         for e in self.graph.edges:
             state = np.concatenate((state, np.array([self.perceived[e[0]][e[1]], self.perceived[e[1]][e[0]]])), axis=0)
@@ -171,7 +217,7 @@ class GraphManager():
 
 
     def error(self):
-        """Returns the Sum of Squared Errors of the current node beliefs."""
+        '''Returns the Sum of Squared Errors of the current node beliefs.'''
         SSE = 0
         for i in self.beliefs:
             SSE += (1 - self.beliefs[i]) ** 2
@@ -179,10 +225,10 @@ class GraphManager():
 
 
     def processEvent(self, event):
-        """Update the belief of a receiving node based on the data received
+        '''Update the belief of a receiving node based on the data received
         from the sender and the perceived reliability of the sender from
         the receivers perspective.
-        """
+        '''
         sender = event[0]
         receiver = event[1]
         data = event[2]
@@ -200,12 +246,12 @@ class GraphManager():
 
 
     def train(self, event):
-        """Update the perceived reliability of the sender from the receiver's
+        '''Update the perceived reliability of the sender from the receiver's
         perspective based on SGD where the objective function is the squared
         error of the data received.
 
         w = w - eta * (-2 * (1 - wx) * x)
-        """
+        '''
         sender = event[0]
         receiver = event[1]
         data = event[2]
@@ -216,7 +262,7 @@ class GraphManager():
 
 
     def accuracy(self, vertices=None):
-        """Returns the percentage of vertices with the correct value."""
+        '''Returns the percentage of vertices with the correct value.'''
         count = 0
 
         if vertices == None:
@@ -230,6 +276,9 @@ class GraphManager():
 
 
     def hubNeighborhoodAccuracy(self):
+        '''Returns the percentage of vertices in the neighborhood of a hub
+        that have a truthful belief.
+        '''
         hubs = self.getHubs()
 
         hub_neighbors = set()
@@ -240,6 +289,9 @@ class GraphManager():
 
 
 class Simulator():
+    '''A container for a single simulation.
+    '''
+
     def __init__(self, config):
         self.parameters = config
 
@@ -247,6 +299,9 @@ class Simulator():
 
 
     def train(self):
+        '''Continuously generate event batches until the perceived state of the 
+        network is changing less than the convergence threshold.
+        '''
         global LEARNING_RATE
 
         old_perceived_state = np.zeros(shape=(2*len(self.graph.graph.edges)))
@@ -268,6 +323,9 @@ class Simulator():
 
 
     def run(self):
+        '''Train the network if necessary and then simulate the number of events
+        needed.
+        '''
         if (self.parameters["edge_reliability_method"] == 'sgd'):
             self.train()
             self.graph.initializeBeliefs()
@@ -280,6 +338,11 @@ class Simulator():
 
 
 class HyperSimulator():
+    '''A container that runs simulations for all of the configurations
+    in the configuration file a specified number of times and averages
+    the results together for each configuration.
+    '''
+
     def __init__(self, configs_filename, num_runs, output_file):
         self.num_runs = num_runs
         self.output_file = output_file
@@ -289,6 +352,9 @@ class HyperSimulator():
 
 
     def runSimulation(self, config):
+        '''Instantiate and run a single simulation with a given
+        configuration.
+        '''
         simulator = Simulator(config)
         accuracy = simulator.run()
         hub_neighborhood_accuracy = simulator.graph.hubNeighborhoodAccuracy()
@@ -299,6 +365,9 @@ class HyperSimulator():
 
 
     def nextSimulator(self):
+        '''Generate the configurations that should be used for each
+        simulation.
+        '''
         for config_index, config in enumerate(self.configurations):
             for i in range(self.num_runs):
                 print("Starting run #{} of configuration {}".format(i, config_index))
@@ -306,6 +375,11 @@ class HyperSimulator():
 
 
     def run(self):
+        '''Run all of the configurations the specified number of times in parallel.
+
+        The number of processes to use is specified by POOL_SIZE. Output is saved to
+        the given output file.
+        '''
         with mp.Pool(POOL_SIZE) as p:
             results = list(p.map(self.runSimulation, self.nextSimulator()))
 
