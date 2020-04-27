@@ -12,12 +12,12 @@ plt.xlabel("Vertex Stubborness")
 def makeGraphs(list, graph):
     # vertex centralities
 
-    centr = ['degree', 'closeness', 'betweenness']
+    centr = ['random', 'degree', 'closeness', 'betweenness']
     
     for j in centr:
         g = [i for i in list if i['config']["vertex_reliability_method"] == j]
     
-        edge = [j, "sgd"]
+        edge = ['random', 'degree', 'closeness', 'betweenness', 'sgd']
     
         for e in edge:
             plt.plot(stub, [i["average_accuracy"] for i in g if i['config']["edge_reliability_method"] == e], label=e) 
@@ -31,26 +31,11 @@ def makeGraphs(list, graph):
             title = "Closeness Vertex Reliability" + " " + graph
         if (j == 'betweenness'):
             title = "Betweenness Vertex Reliability" + " " + graph
+        if (j == 'random'):
+            title = "Random Vertex Reliability" + " " + graph
         plt.title(title)
         plt.savefig("plots/" + title)
-        plt.show() 
-
-    # vertex random
-
-    g = [i for i in list if i['config']["vertex_reliability_method"] == 'random']
-
-    edge = ['random', 'degree', 'closeness', 'betweenness', 'sgd']
-
-    for e in edge:
-        plt.plot(stub, [i["average_accuracy"] for i in g if i['config']["edge_reliability_method"] == e], label=e) 
-
-        plt.ylabel("Average Accuracy")
-        plt.xlabel("Vertex Stubborness")
-        plt.legend(loc='upper left')       
-        title = "Random Vertex Reliability" + " " + graph
-        plt.title(title)
-        plt.savefig("plots/" + title)
-    plt.show()    
+        plt.show()    
 
 ### barabasi-albert ###
 

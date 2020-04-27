@@ -4,133 +4,241 @@
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "degree",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "degree",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "closeness",
             "edge_reliability_method": "closeness",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "closeness",
             "edge_reliability_method": "closeness",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.0
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "sgd",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "sgd",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "closeness",
             "edge_reliability_method": "sgd",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "closeness",
             "edge_reliability_method": "sgd",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "sgd",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "sgd",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "random",
             "edge_reliability_method": "random",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "random",
             "edge_reliability_method": "random",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "random",
             "edge_reliability_method": "degree",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "random",
             "edge_reliability_method": "degree",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "random",
             "edge_reliability_method": "closeness",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "random",
             "edge_reliability_method": "closeness",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "random",
             "edge_reliability_method": "betweenness",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "random",
             "edge_reliability_method": "betweenness",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "random",
             "edge_reliability_method": "sgd",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "random",
             "edge_reliability_method": "sgd",
-            "vertex_stubbornness": 0
+            "vertex_stubbornness": 0.0
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
@@ -142,6 +250,42 @@
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "degree",
             "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
             "vertex_stubbornness": 0.1
         },
         {
@@ -158,6 +302,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
             "vertex_stubbornness": 0.1
@@ -166,6 +346,42 @@
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.1
         },
         {
@@ -278,6 +494,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "closeness",
             "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.2
@@ -290,6 +542,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
             "vertex_stubbornness": 0.2
@@ -298,6 +586,42 @@
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.2
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.2
         },
         {
@@ -410,6 +734,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "closeness",
             "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.3
@@ -422,6 +782,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
             "vertex_stubbornness": 0.3
@@ -430,6 +826,42 @@
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.3
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.3
         },
         {
@@ -542,6 +974,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "closeness",
             "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.4
@@ -554,6 +1022,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
             "vertex_stubbornness": 0.4
@@ -562,6 +1066,42 @@
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.4
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.4
         },
         {
@@ -674,6 +1214,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "closeness",
             "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.5
@@ -686,6 +1262,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
             "vertex_stubbornness": 0.5
@@ -694,6 +1306,42 @@
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.5
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.5
         },
         {
@@ -806,6 +1454,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "closeness",
             "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.6
@@ -818,6 +1502,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
             "vertex_stubbornness": 0.6
@@ -826,6 +1546,42 @@
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.6
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.6
         },
         {
@@ -938,6 +1694,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "closeness",
             "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.7
@@ -950,6 +1742,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
             "vertex_stubbornness": 0.7
@@ -958,6 +1786,42 @@
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.7
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.7
         },
         {
@@ -1070,6 +1934,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "closeness",
             "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.8
@@ -1082,6 +1982,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
             "vertex_stubbornness": 0.8
@@ -1090,6 +2026,42 @@
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.8
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.8
         },
         {
@@ -1202,6 +2174,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "closeness",
             "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.9
@@ -1214,6 +2222,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
             "vertex_stubbornness": 0.9
@@ -1222,6 +2266,42 @@
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 0.9
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
             "vertex_stubbornness": 0.9
         },
         {
@@ -1334,6 +2414,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "degree",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "closeness",
             "edge_reliability_method": "closeness",
             "vertex_stubbornness": 1
@@ -1346,6 +2462,42 @@
         },
         {
             "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "closeness",
+            "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
             "vertex_stubbornness": 1
@@ -1354,6 +2506,42 @@
             "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
             "vertex_reliability_method": "betweenness",
             "edge_reliability_method": "betweenness",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "random",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "degree",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/barabasi_albert/graph_num_nodes_100_type_barabasi_albert_num_edges_4.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
+            "vertex_stubbornness": 1
+        },
+        {
+            "graph_filepath": "data/erdos_renyi/graph_num_nodes_100_type_erdos_renyi_probability_0.2.txt",
+            "vertex_reliability_method": "betweenness",
+            "edge_reliability_method": "closeness",
             "vertex_stubbornness": 1
         },
         {
