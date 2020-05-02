@@ -52,7 +52,7 @@ class GraphManager():
 
         G = nx.read_edgelist(parameters["graph_filepath"], create_using=nx.OrderedGraph())
         
-        self.graph = nx.OrderedMultiDiGraph(G.to_directed())
+        self.graph = nx.OrderedDiGraph(G.to_directed())
         self.pruneGraph()
         
         self.initializeData()
