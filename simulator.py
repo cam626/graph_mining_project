@@ -42,7 +42,7 @@ class GraphManager():
         self.parameters = parameters
 
         self.centrality_methods = {
-            'degree': self.degreeCentrality,
+            'degree': nx.out_degree_centrality,
             'closeness': nx.closeness_centrality,
             'betweenness': nx.betweenness_centrality,
             'eigenvector': self.eigenvectorCentrality,
@@ -50,9 +50,9 @@ class GraphManager():
             'sgd': self.sgdCentrality
         }
 
-        G = nx.read_edgelist(parameters["graph_filepath"], create_using=nx.OrderedDiGraph())
+        G = nx.read_edgelist(parameters["graph_filepath"], create_using=nx.OrderedGraph())
         
-        self.graph = G.to_directed()
+        self.graph = nx.OrderedDiGraph(G.to_directed())
         self.pruneGraph()
         
         self.initializeData()
@@ -62,8 +62,9 @@ class GraphManager():
         '''Randomly remove 80% of incoming edges from vertices defined
         as hubs.
         '''
-        hubs = self.getHubs()
-        for h in hubs:
+        self.setHubs()
+
+        for h in self.hubs:
             pre = list(self.graph.predecessors(h))
             reduced = len(pre) * 0.2
             while (self.graph.in_degree(h) > reduced):
@@ -72,18 +73,17 @@ class GraphManager():
                 self.graph.remove_edge(remove, h)
 
 
-    def getHubs(self):
+    def setHubs(self):
         '''Identify and return all of the vertices that are classified as hubs
         in the graph.
         '''
-        centrality = self.degreeCentrality(self.graph)
+        centrality = nx.out_degree_centrality(self.graph)
         cutoff = (sum(centrality.values()) / len(centrality)) + 1.5 * statistics.stdev(centrality.values())
 
-        hubs = []
+        self.hubs = []
         for n in centrality:
             if (centrality[n] >= cutoff):
-                hubs.append(n)
-        return hubs
+                self.hubs.append(n)
 
 
     def normalize(self, centrality):
@@ -104,17 +104,6 @@ class GraphManager():
         if method in ["sgd", "random", 'degree']:
             return func(self.graph)
         return self.normalize(func(self.graph))
-
-
-    def degreeCentrality(self, graph):
-        '''Compute the degree centrality of the graph.
-        '''
-        centrality = {}
-        centrality_in = nx.in_degree_centrality(graph)
-        centrality_out = nx.out_degree_centrality(graph)
-        for n in centrality_in:
-            centrality[n] = (centrality_in[n] + centrality_out[n]) / 2
-        return centrality
 
 
     def eigenvectorCentrality(self, graph):
@@ -279,10 +268,8 @@ class GraphManager():
         '''Returns the percentage of vertices in the neighborhood of a hub
         that have a truthful belief.
         '''
-        hubs = self.getHubs()
-
         hub_neighbors = set()
-        for hub in hubs:
+        for hub in self.hubs:
             hub_neighbors = hub_neighbors.union(set(self.graph.neighbors(hub)))
 
         return self.accuracy(hub_neighbors)
