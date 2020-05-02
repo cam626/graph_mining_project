@@ -77,7 +77,7 @@ class GraphManager():
         '''Identify and return all of the vertices that are classified as hubs
         in the graph.
         '''
-        centrality = self.degreeCentrality(self.graph)
+        centrality = nx.out_degree_centrality(self.graph)
         cutoff = (sum(centrality.values()) / len(centrality)) + 1.5 * statistics.stdev(centrality.values())
 
         self.hubs = []
